@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: <pvc-name>
+spec:
+  accessModes:
+    - <access-mode> # ReadWriteOnce, ReadOnlyMany, ReadWriteMany
+  resources:
+    requests:
+      storage: <storage-size>
+ kubectl get nodes
+ kubectl get nodes
+ alias k=kubectl
+ k get nodes
+ k get namespace
+ k get ns
+ k apply -f deployment.yaml -n docker-image
+ k apply -f service.yaml -n docker-image
+ k get pods
+ k get pods -n docker-image
+ k discribe pod deployment-app-77bc8c7f57-89zpm
+ k describe pod deployment-app-77bc8c7f57-89zpm
+ k describe pods deployment-app-77bc8c7f57-89zpm
+ k describe po deployment-app-77bc8c7f57-89zpm -n docker-image
+ k get svc -n docker-image
+ k get pods -n docker-image
+ k edit node ip-10-0-8-134.us-west-2.compute.internal -n docker-image
+ k describe node ip-10-0-8-134.us-west-2.compute.internal -n docker-image
+ k get nodes
+ k get pods
+ k get pods -n docker-image
+ k get pods -n docker-image -o wide
+ k labels node ip-10-0-8-134.us-west-2.compute.internal name=siva
+ k label node ip-10-0-8-134.us-west-2.compute.internal name=siva
+ kubectl get nodes --show-labels
+ k describe node ip-10-0-8-134.us-west-2.compute.internal
+ k apply -f deployment.yaml -n docker-image
+ k get pod -n docker-image -0 wide
+ k get podes -n docker-image -o wid
+ k get pods -n docker-image -o wide
+ k get svs -n docker-image
+ k get svc -n docker-image
+ k get pods -n docker-images
+ k get pods -n docker-image
+ k get nodes -n docker-image -o wide
+ k get nodes -n docker-image --o wide
+ k get nodes -n docker-image -o wide
+ k get pods -n docker-image -o wide
+ k get pods -n docker-image -o wide
+ k get nodes -n docker-images
+ k labe node ip-10-0-8-74.us-west-2.compute.internal name=ram
+ k label node ip-10-0-8-74.us-west-2.compute.internal name=ram
+ k get nodes --show labes
+ k get nodes --show label
+ k get nodes -show label
+ k get nodes --show labels
+ k get nodes --show labes
+ k get nods -n docker-image -o wide
+ k get nodes -n docker-image -o wide
+ k get pods -n docker-images -o wide
+ k get pods -n docker-image -o 

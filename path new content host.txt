@@ -1,0 +1,91 @@
+metadata token url:
+====================
+==================================================================================================================
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/
+=================================================================================================================
+to search the chartgpt-----------shell script to get  region name and zone name,and ec2 instance type and create index html
+
+shell script
+============
+#!/bin/bash
+
+#get  the token 
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/
+
+
+# Get instance metadata
+REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/region)
+ZONE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
+INSTANCE_TYPE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/instance-type)
+
+# Create index.html file
+cat > /var/www/html/index.html <<EOF           --------------------to come nginx page -----to change the path /usr/share/nginx/index.html
+<html>
+  <head>
+    <title>EC2 Instance Details</title>
+  </head>
+  <body>
+    <h1>EC2 Instance Details</h1>
+    <p>Region: ${REGION}</p>
+    <p>Zone: ${ZONE}</p>
+    <p>Instance Type: ${INSTANCE_TYPE}</p>
+  </body>
+</html>
+EOF
+
+go the apache tg to pass the 200 to 200-499 status code to the change --now to get the healthy page  
+==================================================================================================================
+cd /var/www/html/
+to create the mkdir apache 
+to copy the all file apche ----cp index.html apache/ --- to access the alb endpoint to prefend the /apche to the page  
+
+
+================================================================================================================================================
+                                            nginx
+=================================================================================================================================================
+
+same conent to pass the nginx 
+==============================
+
+#!/bin/bash
+
+#get  the token 
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/
+
+
+# Get instance metadata
+REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/region)
+ZONE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
+INSTANCE_TYPE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/instance-type)
+ami-id=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/ami-id)
+
+# Create index.html file
+cat > /usr/share/nginx/html/index.html <<EOF           
+<html>
+  <head>
+    <title>EC2 Instance Details</title>
+  </head>
+  <body>
+    <h1>EC2 Instance Details</h1>
+    <p>Region: ${REGION}</p>
+    <p>Zone: ${ZONE}</p>
+    <p>Zone: ${ami-id}</p>
+    <p>Instance Type: ${INSTANCE_TYPE}</p>
+  </body>
+</html>
+EOF
+
+go the apache tg to pass the 200 to 200-499 status code to the change --now to get the healthy page  
+====================================================================================================
+cd /usr/share/nginx/html-----to see the ngnix index.html content ----to create the directory ---mkdir nginx---cp index.html nginx/---to search the browser to get the page.
+ 
+
+to search the browser the ----------metadata url througing 401 aws metadata
+==========================
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html----to refernece the url ---token 
+
+
+

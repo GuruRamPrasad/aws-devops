@@ -1,0 +1,28 @@
+I wanted to have apache or nginx level also ssl certificate ,How do that ---Keyword: leysencrypt[ca] 
+======================================================================================================
+
+This link we have to fllow that :https://linuxhint.com/secure-apache-lets-encrypt-ubuntu/
+===========================================================================================
+
+1) first we have to login to the aws account and search the ec2 
+
+2) we have create ubuntu ec2-server 
+
+3) After we have excute Below commands
+
+  1) sudo apt update
+  2) sudo apt install certbot python3-certbot-apache -y
+  3) certbot --version
+  4) sudo ufw status
+  5) sudo ufw enable -y
+  6) sudo ufw allow 'Apache Full'
+  7)  sudo ufw status
+  8) sudo certbot --apache -d example.com -d www.example.com----------[example.com ---to replace to the your domain name]
+  9)  sudo systemctl status certbot.timer
+  10) sudo certbot renew --dry-run
+  11) after to copy to the public ip and register to the route53 and to access the your doamin name. 
+
+
+
+
+

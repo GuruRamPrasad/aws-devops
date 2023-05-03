@@ -1,0 +1,35 @@
+----------first we have to login to the aws account after to the serach to the vpc 
+----------Allready we have to create custom vpc to select that ----------to go to the inside ---vpc flowlogs select that --------we have to mentation that name --------
+
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Action": [
+"logs:CreateLogGroup",
+"logs:CreateLogStream",
+"logs:PutLogEvents",
+"logs:DescribeLogGroups",
+"logs:DescribeLogStreams"
+],
+"Effect": "Allow",
+"Resource": "*"
+}
+]
+}
+
+
+
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Sid": "",
+"Effect": "Allow",
+"Principal": {
+"Service": "vpc-flow-logs.amazonaws.com"
+},
+"Action": "sts:AssumeRole"
+}
+]
+}

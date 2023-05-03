@@ -1,0 +1,44 @@
+how to create custom vpc 
+=========================
+
+1) first we have to login aws account after the search the vpc service 
+
+2)go to the vpc ---creare the vpc---to metion the name[vpc-stage] -----and CIDR range 10.0.0.0/16 ---------to given the tags ---create the vpc -----onece you have to create the vpc to enable to the DNS hostname ---- go  to the acction ---click the edit vpc setting ---enable to the DNS hostname.
+
+3) To click to the subnets -----to have create the 3 subnets[public ,private, data] ---------to check the ip address to broweser link :https://cidr.xyz/
+  
+ vpc-private-1a-subnet1 /18 -------10.0.0.0/18 ------- check the last ip address 10.0.63.254
+ vpc-private-1b-subnet2 /18 -------10.0.64.0/18 ------- check the last ip address 10.0.127.254
+ vpc-private-1c-subnet3 /18 -------10.0.128.0/18 ------- check the last ip address 10.0.191.254
+
+ vpc-data-1a-subnet1 /21 -------10.0.192.0/21 ------- check the last ip address 10.0.199.254
+ vpc-data-1b-subnet2 /21 -------10.0.200.0/21 ------- check the last ip address 10.0.207.254
+ vpc-data-1c-subnet3 /21 -------10.0.208.0/21 ------- check the last ip address 10.0.215.254
+
+ vpc-public-1a-subnet1 /21 -------10.0.216.0/21 ------- check the last ip address 10.0.223.254
+ vpc-public-1b-subnet2 /21 -------10.0.224.0/21 ------- check the last ip address 10.0.231.254
+ vpc-public-1c-subnet3 /21 -------10.0.232.0/21 ------- check the last ip address 10.0.239.254
+
+one we have to create all subnets ----to select the 3 public subnet one by one to go to the action ---- to click the option Edit Subnet setting----- To Enable to the Enable auto-assign public IPv4 address.
+
+
+4) To click the internet Gateway ---to give to the name ----and create ----select the igw --go to the action attach to the vpc ---to selct the our own vpc after the create the igw.
+
+5) To click the Nat gate -----to given to the name ----and you have select to the one public subnet -----allocate the Elastic IP ---o create the nat-gw.
+
+6) To click the Route tables ---to create the name conversition to the ----public-route-table---to select the our own vpc  another one is private-route-table these are two create it.
+   
+ *---after the to click the public-route-table----select the subnet association----edit subnet association-----to attach the public subnets ---after the to
+
+ select the route-----edit route---add route---to select the 0.0.0.0/0---------and attach to the internet gatway[IGW].
+
+
+---after the to click the private-route-table----select the subnet association----edit subnet association-----to attach the private and data subnets ---
+
+after the to select the route-----edit route---add route---to select the 0.0.0.0/0---------and attach to the NAT Gatway[NGW].
+
+
+
+
+
+

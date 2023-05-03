@@ -1,0 +1,47 @@
+install docker ubuntu :
+=======================
+commands:
+=========
+
+sudo apt update
+sudo apt install apt-transport-https curl gnupg-agent ca-certificates software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo apt install docker-ce docker-ce-cli containerd.io -y
+docker version
+sudo systemctl status docker
+sudo systemctl start docker
+sudo systemctl enable docker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0hZ09T87%^ri
+
+
+CREATE USER 'siva'@'%' IDENTIFIED BY 'JCLrkq492PC49NF89N2PC';
+GRANT ALL PRIVILEGES ON ram.* TO 'ram'@'%';

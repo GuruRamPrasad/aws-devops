@@ -1,0 +1,165 @@
+USER DATA APACHE:
+=================
+one ec2 mechine same application running to change port path is apche path ----cd /etc/httpd/conf/
+                                                                                vi httpd.conf
+                                                                nginx path --cd /etc/nginx/nginx.conf
+                                                                 
+                                                                tomcat path ---cd /etc/tomcat/conf/service.xml 
+                                                                 
+                                                                jenkins path ---cd /etc/sysconfig/jenkins
+
+apache default path-------/var/www/html/index.html 
+nginx default--------/usr/share/nginx/html
+jenkins default------/opt/lib/jenkins/secrets
+
+
+
+SSM-AJENT USER-DATA
+===================
+sudo yum install telnet -y
+sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+sudo systemctl start amazon-ssm-agent
+sudo systemctl enable amazon-ssm-agent
+sudo systemctl status amazon-ssm-agent
+
+
+SSM-AJENT USER-DATA--ubuntu-server
+==================================
+
+#!/bin/bash
+sudo apt-get update
+sudo snap install amazon-ssm-agent --classic
+sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
+sudo systemctl enable snap.amazon-ssm-agent.amazon-ssm-agent.service
+sudo systemctl status snap.amazon-ssm-agent.amazon-ssm-agent.service
+
+
+
+SSM-AJENT include apache  USER-DATA
+===================================
+sudo yum install telnet -y
+sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+sudo systemctl start amazon-ssm-agent
+sudo systemctl enable amazon-ssm-agent
+sudo systemctl status amazon-ssm-agent
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+
+
+
+USER DATA APACHE-UBUNTU-SERVER:
+==============================
+sudo apt update -y
+sudo apt install apache2 -y
+
+
+
+IN UBUNTU SERVER MYSQL _INSTALATION AND WORDPRESS
+=================================================
+#!/bin/bash
+sudo apt-get update -y
+sudo apt-get install apache2 -y
+sudo apt-get install mysql-server -y
+sudo apt-get install php libapache2-mod-php php-mysql -y
+cat <<EOT>> /var/www/html/info.php
+<?php
+phpinfo();
+?>
+EOT
+mysql -h database-1.cjfsg4iqveix.ap-southeast-2.rds.amazonaws.com -u siva -p 
+cQB20y&i0w1c
+create database wordpress;
+CREATE USER 'username'@'database-1.cjfsg4iqveix.ap-southeast-2.rds.amazonaws.com' IDENTIFIED BY 'cQB20y&i0w1c';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'username'@'database-1.cjfsg4iqveix.ap-southeast-2.rds.amazonaws.com';
+FLUSH PRIVILEGES;
+cd /tmp && wget https://wordpress.org/latest.tar.gz
+tar -xvf latest.tar.gz
+cp -R wordpress /var/www/html/
+chown -R www-data:www-data /var/www/html/wordpress/
+chmod -R 755 /var/www/html/wordpress/
+mkdir /var/www/html/wordpress/wp-content/uploads
+chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads/
+
+
+USER DATA APACHE:
+=================
+                                                              
+#!/bin/bash
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo  systemctl status httpd
+sudo wget https://www.free-css.com/assets/files/free-css-templates/download/page288/foste.zip
+sudo unzip foste.zip
+sudo rm -rf foste.zip
+sudo cd html/
+sudo cp -r * /var/www/html/
+#-----------------------------------
+
+path based user data
+====================
+#!/bin/bash
+yum update -y 
+yum install httpd -y 
+systemctl enable httpd 
+systemctl start httpd
+mkdir -p /var/www/html/cloud1/
+echo "index page" >/var/www/html/index.html
+echo "banana page" >/var/www/html/banana.html
+
+nginx USERDATA:
+===============
+ sudo yum install telnet -y
+ sudo amazon-linux-extras install nginx1 -y
+ sudo systemctl start nginx
+ sudo systemctl status nginx
+---inside to server i wated to the copy form s3 bucket content to ec2 copy for the content
+ sudo aws s3 cp s3://bucket-name/file-name .
+ sudo unzip file-name
+ sudo cd directory-file-name
+ sudo cp -r * /usr/share/nginx/html/
+
+USERDATA-JENKINS
+=================
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum upgrade -y
+amazon-linux-extras install java-openjdk11 -y
+yum install jenkins -y
+systemctl start jenkins
+systemctl enable jenkins
+systemctl status jenkins 
+
+USERDATA-TOMCAT
+================
+#!/bin/bash
+yum update -y 
+yum install java -y 
+java --version 
+cd /opt
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.7/bin/apache-tomcat-10.1.7-windows-x64.zip
+unzip apache-tomcat-10.1.7-windows-x64.zip
+rm -f *.zip
+mv apache-tomcat-10.1.7 tomcat
+cd tomcat/bin/
+chmod 755 *.sh
+sh startup.sh 
+cd ..
+wget https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/10g/r3/cluster/session_state/files/shoppingcart.zip
+unzip shoppingcart.zip
+mv shoppingcart.war webapps 
+rm -f shoppingcart.zip
+
+
+
+
+
+
+
+
+
+
+
+
+
+

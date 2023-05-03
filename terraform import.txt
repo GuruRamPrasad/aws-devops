@@ -1,0 +1,7 @@
+terraform import
+================
+
+
+sg-import------terraform import aws_security_group.rds-sg sg-083402f325f038248
+
+db-import------terraform import aws_db_instance.database database-1

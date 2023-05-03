@@ -1,0 +1,9 @@
+In one ec2 same application running will be change port numbers path:
+
+apche-----cd /etc/httpd/conf/httpd.conf
+
+nginx------cd /etc/nginx/nginx.conf
+
+tomcat ----cd /etc/tomcat/conf/service.xml
+
+jenkins ----cd /etc/sysconfig/jenkins

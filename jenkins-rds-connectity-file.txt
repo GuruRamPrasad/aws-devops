@@ -1,0 +1,74 @@
+ sh "mysql -u sivadev -psriram2662 -h terraform-20230222045831428500000002.c8tuxdxxknoj.us-west-2.rds.amazonaws.com -e 'CREATE DATABASES' ramdata"
+
+
+
+
+
+
+CREATE DATABASE mydatabasename;
+
+
+mysql -u[sivadev] -p[sriram2662]
+CREATE DATABASE mydatabasename;
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('to connect the rds') {
+            steps {
+                sh'mysql -h terraform-20230222045831428500000002.c8tuxdxxknoj.us-west-2.rds.amazonaws.com -u sivadev -psriram2662 -e "show databases"' 
+                // sh'mysql -u sivadev -psriram2662 -e CREATE DATABASE ramdatabases;'
+                //  sh "mysql -u sivadev -psriram2662 -h terraform-20230222045831428500000002.c8tuxdxxknoj.us-west-2.rds.amazonaws.com -e 'create databases' mydatabasename;"
+                sh 'mysql -u[sivadev] -p[sriram2662] CREATE DATABASE mydatabasename;'
+            }
+        }
+    }
+}
+
+
+
+mysql -u sivadev -psriram2662 mydatabasename<mydatabase.sql;
+
+mysql -u sivadev -p'sriram2662' -e 'CREATE TABLE mytable (id INT, name VARCHAR(255));' sivadata
+
+
+
+
+
+
+mysql -u sivadev -p'sriram2662' -e 'CREATE TABLE mytable (id INT, name VARCHAR(255));'newname
+
+
+
+
+
+mysql -h terraform-20230222045831428500000002.c8tuxdxxknoj.us-west-2.rds.amazonaws.com -u sivadev -psriram2662 -e "show databases" 
+mysql -h terraform-20230222045831428500000002.c8tuxdxxknoj.us-west-2.rds.amazonaws.com -u sivadev -psriram2662 -e'create databases'namesiva;
+
+
+
+#mysql -h terraform-20230222045831428500000002.c8tuxdxxknoj.us-west-2.rds.amazonaws.com -u sivadev -psriram2662 -e 'create databases' namesiva;
+#mysql -u sivadev -psriram2662 mydatabasename<mydatabase.sql;
+#mysql -u sivadev -p'sriram2662' -e 'CREATE TABLE mytable (id INT, name VARCHAR(255));' sivadata
+
+
+
+
+
+mysql -u sivadev -p'sriram2662' -e 'CREATE TABLE mytable (id INT, name VARCHAR(255));'newname
+
+
+
+
+query
+======
+sql sql: "SELECT * FROM jobs WHERE id = ?", parameters: [1]
+
+
+
+
+

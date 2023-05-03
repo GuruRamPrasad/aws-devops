@@ -1,0 +1,39 @@
+vpc peering 
+================
+
+
+what is mean by vpc peering
+===========================
+vpc peering connection is a networking connection between two vpc that enables you to route traffic between them using private IPV4 addresses or IPV6 address. Instances in either VPC can communicate with each other as if they are within the same network. You can create a VPC peering connection between your own VPCs, or with a VPC in another AWS account. The VPCs can be in different Regions (also known as an inter-Region VPC peering connection).
+
+
+------>vpc peering is share to the one to another and one account to another account and same region also possiable peering.
+ 
+
+i have created the vpc peering is same region :
+================================================
+        1) Default vpc 
+        2) custom vpc 
+ 
+----i have choice the one region us-west-2----origion after that i have create the owwn vpc by using manuval or terraform . 
+ 
+----go the vpc service one check the vpc create or not after go down to see the peering connection section ----to selete the name ----default vpc select -----my account----this region select ---to enter the custom vpc id to have enter that -----after that we have create the peering connection.
+
+
+----after the create the vpc peering connection ---to select the default vpc ----go to the action ---to accept the request ---now to vpc peering is enable ti is active state now.
+
+----go to the route table to select the default route table --- go down to see the the route option--to select the edit option ---to enter the custom vpc cidr range --side option to select the peering connection and save it .
+
+-----go to the route table to select the default route table --- go down to see the the route option--to select the edit option ---to enter the default vpc cidr range --side option to select the peering connection and save it .
+
+
+----after the to create one ec2 bty using default vpc 
+
+----after the to create one ec2 by using custom vpc on private subnet.
+
+
+
+
+
+
+ 

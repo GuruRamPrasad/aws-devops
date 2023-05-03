@@ -1,0 +1,14 @@
+dynamic autosacalling for apache 
+===============================
+---- first we have create one ec2 instance install apache application---after that take ami backup ----to the select the launch template inside launch templete we can choose the own ami then we have create launch template.
+
+----after go to the target group -----inside the tg we have the apache instance ---
+---to create the application load balancer----to attach the tg ----copy the load balancer endpoint ---to search the brower ---it came apache page----
+
+
+
+-----to select the auto scalling -----name -----to select the launch template -------default vpc---to select the az-----Attach to an existing load balancer-----Existing load balancer target groups to select that -----Desired capacity,Minimum capacity,Maximum capacity to selct that -----Scaling policies --------Target tracking scaling policy------poilicy types-- step scalling ---CloudWatch alarm-------create
+
+
+---to the cloud watch dashboard----select Metric-----go down to select the ec2 ---Per-Instance Metrics----to selct the CPUUtilization-----threshold value. min 1000-----next -----to select notification ----Create new topic----name---emai---Name and description---create 
+ 

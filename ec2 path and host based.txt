@@ -1,0 +1,46 @@
+ec2 path and host based 
+========================
+
+Path based:
+===========
+ security groups :
+==================
+         1) alb-sg ---80 -anywhere--0.0.0.0/0
+         2) ec2-sg --22--MyIp (or) vpnIP
+                     80---alb-sg attached that 
+
+target goups :
+ ============
+in target group you have to pass the health check /cloud1/index.html/
+        tg1---cloud1
+        tg2--cloud2
+
+
+----> after we have create the two ec2 instances inside the to attached the sg ec2 -sg and to pass the used data  and same user data pass the cloud to to change the user data to remove the cloud1 to pass the cloud2.
+
+#!/bin/bash
+yum update -y 
+yum install httpd -y 
+systemctl enable httpd 
+systemctl start httpd
+mkdir -p /var/www/html/cloud1/
+echo "index page" >/var/www/html/cloud1/index.html
+echo "banana page" >/var/www/html/cloud2/banana.html
+
+
+-----alb created attached to the ec2 inside to add the path based rules to to the /clou1/* ----to add the cloud1-tg 
+                                                                                  /clou2/*------to add the cloud2-tg
+host based 
+==========
+same process to add the in alb inside rules host based rules ---to select the host based rules ----siva-rct.com ---to add the coud1-tg
+                                                                                               -----siva-rct2.com---to add the cloud2-tg
+
+
+
+
+
+
+
+
+         
+

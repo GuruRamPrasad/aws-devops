@@ -1,0 +1,19 @@
+step 1:
+=======
+First we have login AWS CONSOLE ----------Go to the IAM CONSOLE ----CHOOSE Create new role ---assign  the policy -----1)AmazonSSMFullAccess
+            2)AmazonSSMmanagedinstancecore
+step 2:
+=======
+Go to the EC2 service ---one ec2 create last step  addition setting  we added the USERDATA --- same ec2 mechine we attached to the IAM ROlE
+
+USERDATA:
+========= 
+#!/bin/bash
+sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+sudo systemctl start amazon-ssm-agent
+sudo systemctl enable amazon-ssm-agent
+sudo systemctl status amazon-ssm-agent
+
+STEP 3:
+=======
+click to the CheckBox ec2 instance------we click to the connect ---------will go to thye session manager-----down side we will see the connect option click that. we directly we connect to the server.

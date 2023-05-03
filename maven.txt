@@ -1,0 +1,169 @@
+
+================================================================================================================================================
+                                                                      HTML
+===============================================================================================================================================
+
+first we have to create two server :1) jenkins 2) apache
+
+1) apche server to install to the apche (or) httpd appliction webpage or coming or not to check the page browser
+    
+   -----> to configureration to the jenkins to appcation to pass the key-gen
+           --->go to the directory .ssh
+                authory key to pass the jenkins public key the we want the past that 
+
+ 2) jenkins server to instal the jenkins application commands :
+ #!/bin/bash/     
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum upgrade -y
+amazon-linux-extras install java-openjdk11 -y
+yum install jenkins -y
+systemctl start jenkins
+systemctl enable jenkins
+systemctl status jenkins 
+ 
+---> to enter the root user command vi /etc/passwd to chaneg to the false to bash we enter that.
+--->to enet the command vi /etc/sudoers.d/90-cloud---to add one more jenkins-all-
+
+--->after the shift the su - jenkins command 
+ ----> to ssh-keygen .ssh to copy to the public key to past tyhe github ---setting--ssh keygen---to have past that and also simaller to tyhe past the appliction server also 
+
+---> github to interlink or not to check the command ssh -T git@github.com
+--->application server way to access aor not to check the jenkins server ommand ---ssh root @private ip
+
+---> go  to the jenkins page --we have create the job --freestyle job --in side we have select the build --execulte shell --to write the command 
+  
+  ---> inside job one more we have to selete that ---source code mangement --git --to enter the git url and which branch 
+
+          job name is CI-html-code [contineous-integration]
+                    zip -r helloworld.zip *
+                    aws s3 cp helloworld.zip s3//bucket-name/
+
+      another job name CD-html-Code[contineous -deployment]
+
+                      rm -rf *
+                     aws s3 cp s3://bucket-name/file name / .
+                     unzip file name 
+                     scp index.html root@private.ip:/var/www/html/
+
+
+To copy the application public ip to access the browser to get output page content
+
+
+
+
+==========================================================================================================================================
+                                                               MAVEN 
+===========================================================================================================================================
+
+first we have to install maven in jenkins server.
+================================================
+#!/bin/bash
+# install git
+sudo yum install git -y
+
+#Download maven 
+cd /opt/
+ sudo wget https://dlcdn.apache.org/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz
+
+# extract 
+ sudo tar -xvzf apache-maven-3.8.7-bin.tar.gz
+
+# rename
+ sudo mv apache-maven-3.8.7 maven38
+
+# remove gz
+ sudo rm -f apache-maven-3.8.7-bin.tar.gz
+
+
+# mvn package
+cd maven38/bin
+
+#start maven
+./mvn
+
+--->   same ec2-instance install jenkins application
+
+1)we have  go to the jenkins server we have cereate the one job --freestyle job 
+
+2) Inside the job to insert the git url and go to the execute the shell and to insert the commands 
+
+/opt/maven38/bin/mvn clean package
+
+default path automatic gernaration path:
+========================================
+/var/lib/jenkins/workspace/jenkins-maven/target/sparkjava-hello-world-1.0.war
+============================================================================
+automatic s3 bucket create command : aws s3 ls mb s3://bucket-name metion/
+
+
+/var/lib/jenkins/workspace/ci -deployment/target/sparkjava-hello-world-1.0.war
+==============================================================================
+
+to install in jenkins dashboard ---go to mange jenkins---manage pulgin ---avalible pulgin-to search the parameter pulgin--install and restart 
+
+parameter pulgin ---varible genarate the build base on user input for example ---PKG =4 
+
+
+contineous-integration[CI]
+=======================
+
+mv target/sparkjava-hello-world-1.0.war target/sparkjava-hello-world-$BUILD_NUMBER.war
+
+aws s3 cp target/sparkjava-hello-world-$BUILD_NUMBER.war s3://dyanamic-application-cloud/
+
+contineous deployment[CD]
+=========================
+
+we have select --build parameter ---PKG--default[1]---after we have select the ---BUILD STEP --- execute shell---we write the commands 
+aws s3 cp s3://dyanamic-application-cloud/sparkjava-hello-world-$PKG.war .
+
+scp -r sparkjava-hello-world-$PKG.war root@172.31.23.130:/tmp/tomcat9/webapps
+
+
+tocat install another server
+============================
+yum update -y
+amazon-linux-extras install java-openjdk11 -y
+cd /opt/
+ wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+ tar -xvzf apache-tomcat-10.0.27.tar.gz
+ mv apache-tomcat-10.0.27 tomcat
+ rm -rf apache-tomcat-10.0.27.tar.gz
+cd tomcat/
+ cd bin/
+ sh startup.sh
+
+to same application running on same port numbers to change the one application port numbers ---cd /filename/conf/server.xml 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aws eks --region us-west-2 update-kubeconfig --name demo-ekscluster

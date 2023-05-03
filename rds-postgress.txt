@@ -1,0 +1,135 @@
+how to create postgres rds step -by -step 
+=========================================
+
+1) first login to the aws account to search the ec2 server --to create the security group ---22-vpnIP-myIp
+                                                                                             5432---anywhare--0.0.0.0/0
+                                               RDS sg ---after one more security group create --5432--we have to select the ec2 sg 
+
+2) To create the ubuntu server inside the server to the exiting ec2-sg attach that.
+
+
+-----------after go to the rds server 
+3) To select the Database-----again to select the create databse----choose the database creation method(to select standard create)--------engine option --to 
+
+select the postgresql-------to select the version also -----to select the Templates  free tier ---Availability and durability d---------------------
+
+-------Master username you have change  the name --------password -----confirm password -----Public access [NO]----------in vpc ----to select the Choose 
+
+existing---to attach the rds sg -----now to create the database.  
+
+
+4)---now we have login to server to install the postgress in ubuntu server commands:
+     
+      commands
+      ==========                           
+     1. sudo apt update -y
+     2.sudo apt install postgresql -y
+     3.sudo systemctl status postgresql
+
+    4.sudo su - postgres
+    5.psql
+    6.\l------------------------------------------to list of the databses 
+    7.CREATE DATABASE <databse_name>; ---use semicolon here --------------to create the database 
+    8.one step back come command [\q] after then excute the command---pg_dumpall >./backup.bak 
+    9.after then again to go the postgress path to enter the command [psql] [\l it will show the all databases]now we have to delete one databes command----------------------------drop database <database name>; -----to delete the database command
+    10.again we have to come back [\q]-----(at root server now)---now we excute the command -----psql -f ./backup.bak postgres--------backup the file ---command
+
+ 11.CREATE TABLE example_name (      ----------------- to create the table command 
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    age INTEGER
+);
+
+12.-----to insert any content in table command -------INSERT INTO <table_name> (name, age) VALUES ('John', 30);
+
+13.-----------inside the table to see the content command------ SELECT * FROM example_table;
+                                                                SELECT * FROM example_name;
+
+
+
+	
+====================================================================================================================================================
+                                                                   [or]
+===================================================================================================================================================
+
+
+----to login to the postgress command-----psql --host=database-2.crz4r1bh6gap.us-east-1.rds.amazonaws.com --port=5432 --username=postgres --password
+
+
+-------create database sivarm; ------------to create the database
+
+-----\1 -------------------------------to list of the databses command
+
+
+ -CREATE TABLE example_name (      ----------------- to create the table command 
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    age INTEGER
+);
+
+
+
+-----to insert nay content in table -------INSERT INTO <table_name> (name, age) VALUES ('John', 30);
+
+
+-----------inside the table to the content command------ SELECT * FROM example_table;
+                                                         SELECT * FROM example_name;
+
+to create the dump backup file create file command
+==================================================
+pg_dump -h your-rds-endpoint -p your-rds-port -U your-rds-username -Fc your-database-name > your-backup-file-name.dump
+
+pg_dump -h database-2.crz4r1bh6gap.us-east-1.rds.amazonaws.com -p 5432 -U postgres -Fc  siva  > postgres.dump
+                 
+
+
+rds passwd and username
+====================== 
+4bkWe0&05H4*
+postgres
+database-2
+
+psql
+\l
+pg_dumpall >./backup.bak
+drop database <database name>
+psql -f ./backup.bak postgres
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

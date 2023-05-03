@@ -1,0 +1,9 @@
+1. windows server
+connect to the server using gitbash.
+2. install .net framework 4.8 version in this server.
+-----------------------------------------------------------
+linux: wget/curl
+windows : XXXXX
+winget
+-----------------------
+steps to install .net framework 4.8 using cli (througs terminal)
